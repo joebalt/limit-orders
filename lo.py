@@ -9,7 +9,9 @@ def main(argv):
 
     p = float(raw_input("Stock price                  : "))
     ns = float(raw_input("Number of shares             : "))
-    c = float(raw_input("buy/sell combined commission : "))
+    print("buy/sell combined commission : 20")
+    c = 20.0
+    # c = float(raw_input("buy/sell combined commission : "))
     if ns <= 0:
         print("Number of shares cannot be zero, exiting...")
         sys.exit(1)
@@ -18,11 +20,13 @@ def main(argv):
 
     pp = c / ns
 
-    print("Break even price: {:6.2f}".format(p + pp))
+    print("Break even price             : {:6.2f}".format(p + pp))
 
     if dp > 0:
         pp = pp + (dp / ns)
-        print("Desired profit sell price {:6.2f}".format(p + pp))
+        print("Desired profit sell price    : {:6.2f}".format(p + pp))
+
+    print("Acquisition cost             : {:6.2f}".format(p * ns + c))
 
     print('End run.')
     return 0
