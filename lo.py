@@ -2,22 +2,36 @@
 
 
 import sys
+import argparse
+
+
+def init_argparse():
+    parser = argparse.ArgumentParser(description="lo - limit order calculator")
+    parser.add_argument("--price", dest="p",
+                        help="Stock price")
+    parser.add_argument("--num-shares", dest="ns",
+                        help="Number of shares")
+    parser.add_argument("--commissions", dest="c",
+                        help="Combined buy/sell commission")
+    parser.add_argument("--desired-profit", dest="dp",
+                        help="Desired profit after costs")
+    return parser.parse_args()
 
 
 def main(argv):
     print('Begin run...')
+    args = init_argparse()
 
-    p = float(raw_input("Stock price                  : "))
-    ns = float(raw_input("Number of shares             : "))
-    print("buy/sell combined commission : 20")
-    c = 20.0
-    # c = float(raw_input("buy/sell combined commission : "))
+    p = float(args.p)
+    c = float(args.c)
+    ns = float(args.ns)
     if ns <= 0:
         print("Number of shares cannot be zero, exiting...")
         sys.exit(1)
-    dp = float(raw_input("Desired profit               : "))
-    # ct = float(raw_input("Capital gains tax (%)        : "))
+    dp = float(args.dp)
 
+    # compute price per share increase needed based
+    # on commissions and num shares
     pp = c / ns
 
     print("Break even price             : {:6.2f}".format(p + pp))
