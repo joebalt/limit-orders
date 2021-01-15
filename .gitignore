@@ -1,5 +1,4 @@
-# This project specific transitory files
-hl52.input*
+# This project-specific transitory files
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
