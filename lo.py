@@ -12,16 +12,20 @@ def init_argparse():
     parser = argparse.ArgumentParser(description="lo.py - limit order calculator")
     parser.add_argument("-p", "--price", dest="p",
                         help="Stock price",
-                        type=float)
+                        type=float,
+                        required=True)
     parser.add_argument("-ns", "--num-shares", dest="ns",
                         help="Number of shares",
-                        type=float)
+                        type=float,
+                        required=True)
     parser.add_argument("-c", "--commissions", dest="c",
                         help="Combined buy/sell commission",
-                        type=float)
+                        type=float,
+                        required=True)
     parser.add_argument("-dp", "--desired-profit", dest="dp",
                         help="Desired profit after costs",
-                        type=float)
+                        type=float,
+                        required=True)
     return parser.parse_args()
 
 
@@ -32,9 +36,6 @@ def main(argv):
     p = args.p
     c = args.c
     ns = args.ns
-    if ns <= 0:
-        print("Number of shares cannot be zero, exiting...")
-        sys.exit(1)
     dp = float(args.dp)
 
     # compute price per share increase needed based
