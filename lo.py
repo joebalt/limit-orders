@@ -5,16 +5,23 @@ import sys
 import argparse
 
 
+"""Determine limit order price based on desired profit"""
+
+
 def init_argparse():
-    parser = argparse.ArgumentParser(description="lo - limit order calculator")
-    parser.add_argument("--price", dest="p",
-                        help="Stock price")
-    parser.add_argument("--num-shares", dest="ns",
-                        help="Number of shares")
-    parser.add_argument("--commissions", dest="c",
-                        help="Combined buy/sell commission")
-    parser.add_argument("--desired-profit", dest="dp",
-                        help="Desired profit after costs")
+    parser = argparse.ArgumentParser(description="lo.py - limit order calculator")
+    parser.add_argument("-p", "--price", dest="p",
+                        help="Stock price",
+                        type=float)
+    parser.add_argument("-ns", "--num-shares", dest="ns",
+                        help="Number of shares",
+                        type=float)
+    parser.add_argument("-c", "--commissions", dest="c",
+                        help="Combined buy/sell commission",
+                        type=float)
+    parser.add_argument("-dp", "--desired-profit", dest="dp",
+                        help="Desired profit after costs",
+                        type=float)
     return parser.parse_args()
 
 
@@ -22,9 +29,9 @@ def main(argv):
     print('Begin run...')
     args = init_argparse()
 
-    p = float(args.p)
-    c = float(args.c)
-    ns = float(args.ns)
+    p = args.p
+    c = args.c
+    ns = args.ns
     if ns <= 0:
         print("Number of shares cannot be zero, exiting...")
         sys.exit(1)
