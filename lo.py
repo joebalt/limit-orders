@@ -23,7 +23,7 @@ def init_argparse():
                         type=float,
                         required=True)
     parser.add_argument("-dp", "--desired-profit", dest="dp",
-                        help="Desired profit after costs",
+                        help="Desired total profit after costs",
                         type=float,
                         required=True)
     return parser.parse_args()
